@@ -100,6 +100,6 @@ data, err := customConfig.Marshal(&v)
 > for any project where JSON output is compared in tests or stored for diffing.
 >
 > I also enable `DisallowUnknownFields: true` in test environments to catch schema drift early —
-> it's much easier to debug a decode error at the boundary than track down a silent data loss
-> bug deeper in the call stack. Pair it with a build tag or an env var check so it doesn't
-> affect production performance.
+> it's much easier to debug a decode error at the boundary than to chase a silent nil field
+> deep in business logic. Pair this with a strict config in your test suite's `TestMain` and
+> you'll catch breaking API changes before they reach production.
