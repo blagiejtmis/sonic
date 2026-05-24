@@ -98,6 +98,9 @@ data, err := customConfig.Marshal(&v)
 > **Personal note**: I typically use `SortMapKeys: true` and `UseNumber: true` as my defaults
 > to avoid map iteration non-determinism and floating-point precision surprises. Recommended
 > for any project where JSON output is compared in tests or stored for diffing.
+>
+> I also enable `DisallowUnknownFields: true` in test environments to catch schema drift early —
+> it's much easier to debug a decode error than a silently missing field downstream.
 
 ## Platform Support
 
@@ -105,10 +108,4 @@ data, err := customConfig.Marshal(&v)
 |---|---|
 | amd64 | Full (JIT-accelerated) |
 | arm64 | Full (JIT-accelerated) |
-| others | Standard (via `encoding/json` fallback) |
-
-## Contributing
-
-Please read [CONTRIBUTING.md](.github/PULL_REQUEST_TEMPLATE.md) before submitting pull requests.
-
-To report bugs or request features, use the [issue tracker](https://github.com/your-org/sonic/issues).
+| others | Pure Go fallback (via `encoding/json`) |
