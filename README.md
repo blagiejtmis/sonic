@@ -95,6 +95,10 @@ var customConfig = sonic.Config{
 data, err := customConfig.Marshal(&v)
 ```
 
+> **Personal note**: I typically use `SortMapKeys: true` and `UseNumber: true` as my defaults
+> to avoid map iteration non-determinism and floating-point precision surprises. Recommended
+> for any project where JSON output is compared in tests or stored for diffing.
+
 ## Platform Support
 
 | Architecture | Support Level |
@@ -108,11 +112,3 @@ data, err := customConfig.Marshal(&v)
 Please read [CONTRIBUTING.md](.github/PULL_REQUEST_TEMPLATE.md) before submitting pull requests.
 
 To report bugs or request features, use the [issue tracker](https://github.com/your-org/sonic/issues).
-
-## License
-
-This project is licensed under the Apache 2.0 License — see the [LICENSE](LICENSE) file for details.
-
-## Acknowledgements
-
-This project is a fork of [bytedance/sonic](https://github.com/bytedance/sonic). Thanks to the original authors for their excellent work.
